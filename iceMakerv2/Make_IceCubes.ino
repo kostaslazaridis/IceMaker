@@ -1,7 +1,7 @@
 //========================delays=======================//
-const int delayForMiniCubes=7;   
-const int delayForMiddleCubes=9; 
-const int delayForMegaCubes=11; 
+const int delayForMiniCubes=8;   
+const int delayForMiddleCubes=10; 
+const int delayForMegaCubes=13; 
 
 const int EmptyingWaterDelay=2000;   
 const float ValveDealayToHeat=0.4; 

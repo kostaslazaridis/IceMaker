@@ -30,7 +30,7 @@ int SelectorButtons = A2;
 
 //integers
 int sizeOfIceCube=3;
-
+int i=0;
 
 
   
@@ -71,20 +71,25 @@ void setup() {
 
 void loop() {
 
-
     readButtonSelect();
 
     if(debounced() == true){
       Serial.println("wait to press button");
       digitalWrite(led_Work,LOW);
+      i=0;
     }
 
     if(debounced() == false){
+      if(i==0){
+        CommandSound();
+        delay(1000);
+      }
+      i=1;
       Serial.println("Button pressed");
       digitalWrite(led_Work,HIGH);
       digitalWrite(led_IceFull,LOW);
       digitalWrite(led_AddWater,LOW);
-      CommandSound();
+      
       MakeIceCubes(sizeOfIceCube);
     }
   
