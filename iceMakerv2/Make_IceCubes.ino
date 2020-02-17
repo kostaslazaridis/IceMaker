@@ -15,20 +15,20 @@ const float ValveDealayToHeat=0.4;
  
   void MakeIceCubes(int sizeOfIceCube){
     
-   int CartrigeFull = checkIfCartridgeIsFull();
+   int CartrigeFull = checkIfCartridgeIsFull(); //If Cartridge is not full proceed
    if (CartrigeFull){
     State=HIGH ;
     return; 
    }
 
-   int TrayFilled = fillTheTrayWithWater();
+   int TrayFilled = fillTheTrayWithWater(); //If there is water proceed
    if (!TrayFilled){
     State=HIGH ;
     return; 
    }
        
-   //if(checkIfCartridgeIsFull()==false && fillTheTrayWithWater()==true){ //If Cartridge is not full proceed or there is not water
-    Serial.println("Making IceCubes");
+   
+   Serial.println("Making IceCubes");
     
    
     switch (sizeOfIceCube) {
@@ -47,12 +47,9 @@ const float ValveDealayToHeat=0.4;
         Serial.println("Making Ice cubes number 3");
         algorithIcecubes(delayForMegaCubes);
         break;
-    }
+   }
         
-          
-      State=HIGH ;
-      return; 
-     }
+  }
 
 
    void algorithIcecubes(float minutesForCubeSize){
