@@ -14,37 +14,44 @@ const float ValveDealayToHeat=0.4;
  //=====================================================//
  
   void MakeIceCubes(int sizeOfIceCube){
-     
-     if(checkIfCartridgeIsFull()==false && fillTheTrayWithWater()==true){ //If Cartridge is not full proceed or there is not water
-         Serial.println("Making IceCubes");
-         
-           int leftSwitchState = digitalRead(leftSwitch);
-           int rightSwitchState = digitalRead(rightSwitch);
+    
+   int CartrigeFull = checkIfCartridgeIsFull();
+   if (CartrigeFull){
+    State=HIGH ;
+    return; 
+   }
 
-
-
-           switch (sizeOfIceCube) {
-           
-             case 1: //mini cubes
-              Serial.println("Making Ice cubes number 1");
-              algorithIcecubes(delayForMiniCubes);
-              break;
-  
-              case 2: //middle cubes
-              Serial.println("Making Ice cubes number 2");
-              algorithIcecubes(delayForMiddleCubes);
-              break;
-  
-              case 3: //mega cubes
-              Serial.println("Making Ice cubes number 3");
-              algorithIcecubes(delayForMegaCubes);
-              break;
-           }
+   int TrayFilled = fillTheTrayWithWater();
+   if (!TrayFilled){
+    State=HIGH ;
+    return; 
+   }
+       
+   //if(checkIfCartridgeIsFull()==false && fillTheTrayWithWater()==true){ //If Cartridge is not full proceed or there is not water
+    Serial.println("Making IceCubes");
+    
+   
+    switch (sizeOfIceCube) {
+    
+     case 1: //mini cubes
+        Serial.println("Making Ice cubes number 1");
+        algorithIcecubes(delayForMiniCubes);
+        break;
+      
+      case 2: //middle cubes
+        Serial.println("Making Ice cubes number 2");
+        algorithIcecubes(delayForMiddleCubes);
+        break;
+    
+      case 3: //mega cubes
+        Serial.println("Making Ice cubes number 3");
+        algorithIcecubes(delayForMegaCubes);
+        break;
+    }
         
           
-         
-     }
-     else State=HIGH; //Cartridge is full do not proceed wait until repressed the button
+      State=HIGH ;
+      return; 
      }
 
 

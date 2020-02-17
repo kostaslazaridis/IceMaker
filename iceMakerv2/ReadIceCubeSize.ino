@@ -39,5 +39,5 @@
       Serial.print("\t| ");
       Serial.print(Rs);
       Serial.println("kΩ |\t ");
-
+ 
   }

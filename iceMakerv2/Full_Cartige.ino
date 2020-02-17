@@ -1,7 +1,7 @@
  
  
   //temp
-  const int tempValueforFull=2; //degrees to stop the machine because it's full
+  const int tempValueforFull=-1; //degrees to stop the machine because it's full
   
   //======================int/float======================//
   
@@ -26,13 +26,11 @@
     
       TX =-0.00000398985138208*rPowerFive+0.00059799669742102*rPowerFour-0.03516510255701613*rPowerThree+1.02628245620174429*rPowerTwo-15.7405852126064704*double(RT)+106.032203606033576; //Temperature from thermistor
     
-
-    
       Serial.print("| Temperature");
       Serial.print("\t| ");
       Serial.print(TX);
       Serial.print("C |\t ");
-       Serial.print(RT);
+      Serial.print(RT);
       Serial.println(" kΩ|\t\t ");
       delay(1000);
   }

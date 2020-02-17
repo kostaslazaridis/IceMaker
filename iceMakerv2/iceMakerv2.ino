@@ -72,7 +72,7 @@ void setup() {
 void loop() {
 
 
-      readButtonSelect();
+    readButtonSelect();
 
     if(debounced() == true){
       Serial.println("wait to press button");
@@ -86,7 +86,6 @@ void loop() {
       digitalWrite(led_AddWater,LOW);
       CommandSound();
       MakeIceCubes(sizeOfIceCube);
-      
     }
   
 }

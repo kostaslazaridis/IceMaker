@@ -1,7 +1,7 @@
 
  //========================servo========================//
- const int speedServoToTheRightMicrosecond=1700;
- const int speedServoToTheLeftMicrosecond=1330;
+ const int speedServoToTheRightMicrosecond=1780;
+ const int speedServoToTheLeftMicrosecond=1250;
  const int stopServo=1500;
 
  //delays 

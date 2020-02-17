@@ -10,14 +10,14 @@ const int waterPumpTime=11000;
     
       float waterConductivity = analogRead(waterSensor);
       Serial.println(waterConductivity);
-      if(waterConductivity>300){
+      if(waterConductivity<990){
         return true;
       }
-      else
+      else{
        digitalWrite(led_AddWater,HIGH);
        Serial.println("NO WATER, ADD WATER PLEASE");
-       
        return false;
+      }
   } 
 
  //============================================//
@@ -33,23 +33,24 @@ const int waterPumpTime=11000;
       toTheEndLeft();
       Serial.println("Water pump ON");
       digitalWrite(waterPump,HIGH); //water pump on
-      delay(1000);
+      delay(700);
       Serial.println("check conductivity after the delay");
       
-      while((ElapsedTime>(waterPumpTime+100) || ElapsedTime<(waterPumpTime-100))&&checkNoWater()){
+      while((ElapsedTime>(waterPumpTime+100) || ElapsedTime<(waterPumpTime-100))){
+        
+       if(checkNoWater()==false){
+         digitalWrite(waterPump,LOW);  //water pump off
+         Serial.println("Water pump OFF");
+         Serial.println("No Water BREAK");
+         waterFullSound(); 
+         return false;
+       }
+     
       CurrentTime = millis();
       ElapsedTime = CurrentTime - StartTime;
       Serial.print("ElapsedTime : ");
       Serial.println(ElapsedTime);
       }
-
-     if(checkNoWater()==false){
-       digitalWrite(waterPump,LOW);  //water pump off
-       Serial.println("Water pump OFF");
-       Serial.println("No Water BREAK");
-       waterFullSound(); 
-       return false;
-     }
      
      digitalWrite(waterPump,LOW);  //water pump off
      Serial.println("Water pump OFF");
