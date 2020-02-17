@@ -14,51 +14,62 @@ const float ValveDealayToHeat=0.4;
  //=====================================================//
  
   void MakeIceCubes(int sizeOfIceCube){
-     Serial.println("check if Cartridge Is Full");
-     if(checkIfCartridgeIsFull()==false){ //If Cartridge is not full proceed
+     
+     if(checkIfCartridgeIsFull()==false && fillTheTrayWithWater()==true){ //If Cartridge is not full proceed or there is not water
          Serial.println("Making IceCubes");
-         fillTheTrayWithWater();          //full the tray with water
-         int leftSwitchState = digitalRead(leftSwitch);
-         int rightSwitchState = digitalRead(rightSwitch);
+         
+           int leftSwitchState = digitalRead(leftSwitch);
+           int rightSwitchState = digitalRead(rightSwitch);
 
-         switch (sizeOfIceCube) {
 
-           case 1: //mini cubes
-            Serial.println("Making Ice cubes number 1");
-            algorithIcecubes(delayForMiniCubes);
-            break;
 
-            case 2: //middle cubes
-            Serial.println("Making Ice cubes number 2");
-            algorithIcecubes(delayForMiddleCubes);
-            break;
-
-            case 3: //mega cubes
-            Serial.println("Making Ice cubes number 3");
-            algorithIcecubes(delayForMegaCubes);
-            break;
-         }
+           switch (sizeOfIceCube) {
+           
+             case 1: //mini cubes
+              Serial.println("Making Ice cubes number 1");
+              algorithIcecubes(delayForMiniCubes);
+              break;
+  
+              case 2: //middle cubes
+              Serial.println("Making Ice cubes number 2");
+              algorithIcecubes(delayForMiddleCubes);
+              break;
+  
+              case 3: //mega cubes
+              Serial.println("Making Ice cubes number 3");
+              algorithIcecubes(delayForMegaCubes);
+              break;
+           }
+        
+          
+         
      }
-     else return; //Cartridge is full do not proceed
+     else State=HIGH; //Cartridge is full do not proceed wait until repressed the button
      }
 
 
    void algorithIcecubes(float minutesForCubeSize){
+     
      digitalWrite(valve,LOW);      //heating valve off
+     Serial.println("Vlave OFF");
      delay(500);
      
      digitalWrite(Compressor,HIGH); //Compressor On
      Serial.println("Compressor ON");
      
-     delayForMinutes(minutesForCubeSize); //Waiting to Froze the Ice Cubes
+     delayForMinutesCompressor(minutesForCubeSize); //Waiting to Froze the Ice Cubes
      
      digitalWrite(Compressor,LOW); //Compressor Off
      Serial.println("Compressor OFF");
-     
+
+     Serial.println("Emptying water");
      toTheEndRight(); //empty water
-     delay(EmptyingWaterDelay); //wait to empty water   
+     
+     delay(EmptyingWaterDelay); //wait to empty water  
+     Serial.println("Droping IceCubes");
      digitalWrite(valve,HIGH);      //heating valve off
      delayForMinutes(ValveDealayToHeat); //wait to heat the cubes to fall
+     Serial.println("empty Icecubes from Cartrige");
      EmptyIceCubes();      
  
    }

@@ -1,7 +1,7 @@
 
  //========================servo========================//
  const int speedServoToTheRightMicrosecond=1700;
- const int speedServoToTheLeftMicrosecond=1380;
+ const int speedServoToTheLeftMicrosecond=1330;
  const int stopServo=1500;
 
  //delays 
@@ -48,11 +48,11 @@
  //   empty ice cubes from tray, basicly it is a reciprocating motion and at the end it goes to the original position   //
  //=====================================================================================================================//
   void EmptyIceCubes(){ 
-
+      Serial.println("emptying IceCubes");
       toTheEndLeft();
-      delayForMinutes(delayTimeBetween_left_and_right);
+      delay(delayTimeBetween_left_and_right);
       toTheEndRight();
-      delayForMinutes(delayTimeBetween_left_and_right);
+      delay(delayTimeBetween_left_and_right);
       toTheEndLeft();
     
   }

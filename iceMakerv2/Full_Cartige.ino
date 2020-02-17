@@ -1,13 +1,16 @@
  
  
- //======================int/float======================//
-
-float RT, VR, ln,  T0, VRT;
-double TX;
-#define VCC 5    //Supply voltage
-#define R 10000  //R=10KΩ
- 
- 
+  //temp
+  const int tempValueforFull=2; //degrees to stop the machine because it's full
+  
+  //======================int/float======================//
+  
+  float RT, VR, ln,  T0, VRT;
+  double TX;
+  #define VCC 5    //Supply voltage
+  #define R 10000  //R=10KΩ
+   
+   
  //============================================//
  //               read temperature             //
  //============================================//
@@ -38,7 +41,7 @@ double TX;
  // check if the Cartridge is Full, videlicet the temperature is near zero                                              //
  //=====================================================================================================================//
   boolean checkIfCartridgeIsFull(){ 
-    
+      Serial.println("check if Cartridge Is Full");
       VRT = analogRead(ThermistorPin);   //Acquisition analog value of VRT
       VRT = (5.00 / 1023.00) * VRT;      //Conversion to voltage
       RT = (R*(VCC/VRT - 1.0))/1000;     //finding the uknown resistor
