@@ -11,9 +11,9 @@
  //               read selector             //
  //============================================//
     void readButtonSelect(){ 
-      VRs = analogRead(SelectorButtons);   //Acquisition analog value of VRT
-      VRs = (5.00 / 1023.00) * VRs;      //Conversion to voltage
-      Rs = (R1*(Vsupply/VRs - 1.0))/1000;            //finding the uknown resistor
+      VRs = analogRead(SelectorButtons);     //Acquisition analog value of VRs
+      VRs = (5.00 / 1023.00) * VRs;          //Conversion to voltage
+      Rs = (R1*(Vsupply/VRs - 1.0))/1000;    //finding the uknown resistor
 
       if(Rs>0.5 && Rs<1.5){
         sizeOfIceCube=1;

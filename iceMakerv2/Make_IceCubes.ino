@@ -35,24 +35,24 @@ const float ValveDealayToHeat=0.4;
     
      case 1: //mini cubes
         Serial.println("Making Ice cubes number 1");
-        algorithIcecubes(delayForMiniCubes);
+        algorithmOfIcecubes(delayForMiniCubes);
         break;
       
       case 2: //middle cubes
         Serial.println("Making Ice cubes number 2");
-        algorithIcecubes(delayForMiddleCubes);
+        algorithmOfIcecubes(delayForMiddleCubes);
         break;
     
       case 3: //mega cubes
         Serial.println("Making Ice cubes number 3");
-        algorithIcecubes(delayForMegaCubes);
+        algorithmOfIcecubes(delayForMegaCubes);
         break;
    }
         
   }
 
 
-   void algorithIcecubes(float minutesForCubeSize){
+   void algorithmOfIcecubes(float minutesForCubeSize){
      
      digitalWrite(valve,LOW);      //heating valve off
      Serial.println("Vlave OFF");

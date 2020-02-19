@@ -6,20 +6,32 @@
 
  //delays 
  const int delayTimeBetween_left_and_right=2000;
- 
+ const int maximumTimeForMoving=7000;
  //============================================//
  //   go right until it hit the limit switch   //
  //============================================//
   void toTheEndRight(){
+    unsigned long StartTime = millis();
+    unsigned long CurrentTime = millis();
+    unsigned long ElapsedTime=0;
+    
     Serial.println("Going Right");
-     int rightSwitchState = digitalRead(rightSwitch);
-     Serial.println(rightSwitchState);
+    int rightSwitchState = digitalRead(rightSwitch);
+    Serial.println(rightSwitchState);
+    
     if(rightSwitchState==LOW){
     do{
+      CurrentTime = millis();
+      ElapsedTime = CurrentTime - StartTime;
+      
       delay(100);
       rightSwitchState = digitalRead(rightSwitch);
       Serial.println("moving");
       trayMotor.writeMicroseconds(speedServoToTheRightMicrosecond);  //turn right
+      
+      if(ElapsedTime>maximumTimeForMoving){
+        ErrorServoMove();
+      }
     }while (rightSwitchState==LOW);
     trayMotor.writeMicroseconds(stopServo); //stop 
     }
@@ -29,15 +41,25 @@
  //    go left until it hit the limit switch   //
  //============================================//
   void toTheEndLeft(){
+    unsigned long StartTime = millis();
+    unsigned long CurrentTime = millis();
+    unsigned long ElapsedTime=0;
+    
     Serial.println("Going Left");
-     int leftSwitchState = digitalRead(leftSwitch);
-     Serial.println(leftSwitchState);
+    int leftSwitchState = digitalRead(leftSwitch);
+    Serial.println(leftSwitchState);
+    
     if(leftSwitchState==LOW){
     do{
+      CurrentTime = millis();
+      ElapsedTime = CurrentTime - StartTime;
       delay(100);
       leftSwitchState = digitalRead(leftSwitch);
       Serial.println("moving");
       trayMotor.writeMicroseconds(speedServoToTheLeftMicrosecond);  //turn left
+      if(ElapsedTime>maximumTimeForMoving){
+        ErrorServoMove();
+      }
     }while (leftSwitchState==LOW);
     Serial.println("stop moving");
     trayMotor.writeMicroseconds(stopServo); //stop 
