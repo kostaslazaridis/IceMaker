@@ -6,7 +6,7 @@
 
  //delays 
  const int delayTimeBetween_left_and_right=2000;
- const int maximumTimeForMoving=7000;
+ const int maximumTimeForMoving=3000;
  //============================================//
  //   go right until it hit the limit switch   //
  //============================================//

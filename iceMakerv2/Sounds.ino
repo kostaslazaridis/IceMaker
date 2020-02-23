@@ -21,17 +21,23 @@
  //-----------------
  void startUpSound(){
    tone(buzzer,800);
+   digitalWrite(led_IceFull,HIGH);
    delay(300);
    noTone(buzzer);
    delay(100);
    tone(buzzer,1000);
+   digitalWrite(led_AddWater,HIGH);
    delay(300);
    noTone(buzzer);
    delay(50);
    tone(buzzer,1200);
+   digitalWrite(led_Work,HIGH);
    delay(300);
    noTone(buzzer);
    delay(50);
+   digitalWrite(led_Work,LOW);
+   digitalWrite(led_AddWater,LOW);
+   digitalWrite(led_IceFull,LOW);
  }
 
  //Good

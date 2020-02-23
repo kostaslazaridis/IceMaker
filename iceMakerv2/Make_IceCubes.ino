@@ -27,10 +27,7 @@ const float ValveDealayToHeat=0.4;
     return; 
    }
        
-   
-   Serial.println("Making IceCubes");
-    
-   
+   Serial.println("Making IceCubes");   
     switch (sizeOfIceCube) {
     
      case 1: //mini cubes
